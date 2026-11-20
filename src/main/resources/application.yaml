@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: blog
+
+  datasource:
+    username: postgres
+    password: password
+    url: jdbc:postgresql://localhost:5432/betatq_blog
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
