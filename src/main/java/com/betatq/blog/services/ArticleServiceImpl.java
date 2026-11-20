@@ -4,9 +4,9 @@ import com.betatq.blog.data.dto.ArticleDto;
 import com.betatq.blog.data.mapper.ArticleMapper;
 import com.betatq.blog.data.request.ArticleRequest;
 import com.betatq.blog.entities.ArticleEntity;
+import com.betatq.blog.exceptions.ResourceNotFoundException;
 import com.betatq.blog.repositories.ArticleRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +26,15 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleDto create(ArticleRequest request) {
         ArticleEntity article = repository.save(mapper.toEntity(request));
+        return mapper.toDto(article);
+    }
+
+    @Override
+    public ArticleDto findById(Integer id) {
+        ArticleEntity article = repository
+                .findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(ResourceNotFoundException.MESSAGE));
+
         return mapper.toDto(article);
     }
 }

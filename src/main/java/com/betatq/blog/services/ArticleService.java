@@ -12,4 +12,6 @@ public interface ArticleService {
 
     ArticleDto create(ArticleRequest request);
 
+    ArticleDto findById(Integer id);
+
 }

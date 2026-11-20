@@ -33,4 +33,9 @@ public class ArticleController {
         ArticleDto article = service.create(request);
         return ResponseEntity.created(null).body(article);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ArticleDto> findById(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(service.findById(id));
+    }
 }
